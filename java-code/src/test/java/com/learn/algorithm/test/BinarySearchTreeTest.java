@@ -4,8 +4,6 @@ import com.learn.algorithm.binarytree.BinarySearchTree;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class BinarySearchTreeTest {
@@ -73,5 +71,76 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(bt.celling("F") == null);
         Assert.assertTrue(bt.celling("D").equals("D"));
         Assert.assertTrue(bt.celling("A").equals("B"));
+    }
+
+    @Test
+    public void testSelect() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "B", "C", "D"};
+        bt.buildTree(strs, 1);
+        Assert.assertTrue(bt.select(0).equals("B"));
+        Assert.assertTrue(bt.select(2).equals("D"));
+        Assert.assertTrue(bt.select(3).equals("E"));
+        Assert.assertTrue(bt.select(4) == null);
+    }
+
+    @Test
+    public void testRank() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "B", "C", "D"};
+        bt.buildTree(strs, 1);
+        Assert.assertTrue(bt.rank("B") == 0);
+        Assert.assertTrue(bt.rank("C") == 1);
+        Assert.assertTrue(bt.rank("E") == 3);
+        Assert.assertTrue(bt.rank("A") == -1);
+        Assert.assertTrue(bt.rank("F") == -1);
+    }
+
+    @Test
+    public void testPrintTree() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "B", "C", "D"};
+        bt.buildTree(strs, 1);
+        bt.printTree();
+    }
+
+    @Test
+    public void testHight() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C"};
+        bt.buildTree(strs, 1);
+        Assert.assertTrue(bt.hight() == 1);
+    }
+
+    @Test
+    public void testRootPos() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C"};
+        bt.buildTree(strs, 1);
+        Assert.assertTrue(bt.findRootPos() == -1);
+    }
+
+    @Test
+    public void testRootPos1() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C", "B", "A"};
+        bt.buildTree(strs, 1);
+        Assert.assertTrue(bt.findRootPos() == -3);
+    }
+
+    @Test
+    public void testRootPos2() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
+        bt.buildTree(strs, 1);
+        Assert.assertTrue(bt.findRootPos() == -2);
+    }
+
+    @Test
+    public void testPrint() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
+        bt.buildTree(strs, 1);
+        bt.printTree();
     }
 }
