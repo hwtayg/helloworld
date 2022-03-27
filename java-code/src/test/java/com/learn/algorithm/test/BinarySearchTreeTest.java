@@ -1,10 +1,13 @@
 package com.learn.algorithm.test;
 
 import com.learn.algorithm.binarytree.BinarySearchTree;
+import com.learn.algorithm.binarytree.PrintUtils;
 import com.learn.algorithm.binarytree.TreePrint;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
+import java.util.Queue;
 
 
 public class BinarySearchTreeTest {
@@ -12,7 +15,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testPut1() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         bt.preOrder();
     }
@@ -20,7 +23,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testGet1() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Integer res = bt.get("C");
         Assert.assertTrue(res == 1);
@@ -29,7 +32,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testGetNotFound() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Integer res = bt.get("F");
         Assert.assertTrue(res == null);
@@ -38,7 +41,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testSize() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.size() == 4);
     }
@@ -46,7 +49,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testMaxMin() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.max().key.equals("E"));
         Assert.assertTrue(bt.min().key.equals("B"));
@@ -55,7 +58,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testFloor() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.floor("E").equals("E"));
         Assert.assertTrue(bt.floor("F").equals("E"));
@@ -66,7 +69,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testCelling() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.celling("E").equals("E"));
         Assert.assertTrue(bt.celling("F") == null);
@@ -77,7 +80,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testSelect() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.select(0).equals("B"));
         Assert.assertTrue(bt.select(2).equals("D"));
@@ -88,7 +91,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testRank() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.rank("B") == 0);
         Assert.assertTrue(bt.rank("C") == 1);
@@ -100,7 +103,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testPrintTree() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "B", "C", "D"};
+        String[] strs = new String[]{"E", "B", "C", "D"};
         TreePrint ptr = new TreePrint(bt.buildTree(strs, 1));
         ptr.printTree();
     }
@@ -108,7 +111,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testHight() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C"};
+        String[] strs = new String[]{"E", "F", "C"};
         bt.buildTree(strs, 1);
         Assert.assertTrue(bt.hight() == 1);
     }
@@ -117,7 +120,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testPrint() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
+        String[] strs = new String[]{"E", "F", "C", "K", "J", "I", "H", "G"};
 
         TreePrint ptr = new TreePrint(bt.buildTree(strs, 1));
         ptr.printTree();
@@ -128,7 +131,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testPrintGood() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C"};
+        String[] strs = new String[]{"E", "F", "C"};
 
         TreePrint ptr = new TreePrint(bt.buildTree(strs, 1));
         ptr.printTree();
@@ -139,7 +142,7 @@ public class BinarySearchTreeTest {
     @Test
     public void testDelMinMax() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
+        String[] strs = new String[]{"E", "F", "C", "K", "J", "I", "H", "G"};
 
         BinarySearchTree binarySearchTree = bt.buildTree(strs, 1);
         TreePrint ptr = new TreePrint(binarySearchTree);
@@ -159,4 +162,20 @@ public class BinarySearchTreeTest {
         tree.delete('F');
         print.printTree3();
     }
+
+    @Test
+    public void testRange() {
+        BinarySearchTree<Character, Integer> tree = new BinarySearchTree<Character, Integer>();
+        tree.buildTree(new Character[]{'D', 'B', 'J', 'C', 'F', 'H', 'A', 'G', 'E', 'I'}, 1);
+        TreePrint print = new TreePrint(tree);
+        print.printTree3();
+        Queue<Character> queue = tree.keys('E', 'I');
+        Assert.assertTrue(queue.size() == 5);
+        Queue<Character> queue1 = tree.keys('C', 'E');
+        Assert.assertTrue(queue1.size() == 3);
+        Queue<Character> queue2 = tree.keys('C', 'K');
+        Assert.assertTrue(queue2.size() == 8);
+
+    }
+
 }
