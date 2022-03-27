@@ -1,5 +1,7 @@
 package com.learn.algorithm.binarytree;
 
+import java.util.Objects;
+
 public class Node<K extends Comparable<K>,V> {
     public K key;
     public V value;
