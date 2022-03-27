@@ -1,8 +1,6 @@
 package com.learn.algorithm.binarytree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BinarySearchTree<K extends Comparable<K>, V> {
     Node<K, V> root;
@@ -263,6 +261,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
                 Node<K, V> x = min(t.right);
                 x.right = delMin(t.right);
                 x.left = t.left;
+                x.size = size(x.left) + size(x.right);
                 return x;
             } else if (node.left != null && node.right == null) {
                 return node.left;
@@ -276,7 +275,37 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         } else {
             node.left = delete(node.left, key);
         }
+        node.size = size(node.left) + size(node.right);
         return node;
+    }
+
+    public Queue<K>  keys(K lo, K hi) {
+        Queue<K> queue = new LinkedList<K>();
+        keys(root, lo, hi, queue);
+        return queue;
+    }
+
+    private void keys(Node<K, V> node, K lo, K hi, Queue<K> queue) {
+        if (node == null) {
+            return;
+        }
+        int lcmp = node.key.compareTo(lo);
+        int hcmp = node.key.compareTo(hi);
+        if (lcmp > 0 && hcmp < 0) {
+            keys(node.left, lo, hi, queue);
+            queue.add(node.key);
+            keys(node.right, lo, hi, queue);
+        }else if(lcmp == 0) {
+            queue.add(node.key);
+            keys(node.right,lo,hi, queue);
+        } else if (hcmp == 0){
+            keys(node.left, lo, hi, queue);
+            queue.add(node.key);
+        }else if (hcmp > 0) {
+            keys(node.left, lo, hi, queue);
+        } else if (lcmp < 0) {
+            keys(node.right, lo, hi, queue);
+        }
     }
 
 }
