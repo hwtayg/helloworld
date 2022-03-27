@@ -67,33 +67,33 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         }
     }
 
-    public K max() {
+    public Node<K, V> max() {
         return max(root);
     }
 
-    private K max(Node<K, V> node) {
+    private Node<K, V> max(Node<K, V> node) {
         if (node == null) {
             return null;
         }
         if (node.right != null) {
             return max(node.right);
         } else {
-            return node.key;
+            return node;
         }
     }
 
-    public K min() {
+    public Node<K,V> min() {
         return min(root);
     }
 
-    private K min(Node<K, V> node) {
+    private Node<K,V> min(Node<K, V> node) {
         if (node == null) {
             return null;
         }
         if (node.left != null) {
             return min(node.left);
         } else {
-            return node.key;
+            return node;
         }
     }
 
@@ -222,6 +222,62 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         return level;
     }
 
+    public void delMin() {
+        root = delMin(root);
+    }
+
+    private Node<K,V> delMin(Node<K, V> node) {
+        if (node.left == null) {
+            return node.right;
+        } else {
+            node.left = delMin(node.left);
+            return node;
+        }
+    }
+
+    public void delMax() {
+        root = delMax(root);
+    }
+
+    private Node<K, V> delMax(Node<K, V> node) {
+        if (node.right == null) {
+            return node.left;
+        } else {
+            node.right = delMax(node.right);
+            return node;
+        }
+    }
+
+    public void delete(K key) {
+        root = delete(root, key);
+    }
+
+    private Node<K, V> delete(Node<K, V> node, K key) {
+        if(node == null) {
+            return null;
+        }
+        int cmp = node.key.compareTo(key);
+        if(cmp == 0) {
+            if (node.left != null && node.right != null) {
+                Node<K, V> t = node;
+                Node<K, V> x = min(t.right);
+                x.right = delMin(t.right);
+                x.left = t.left;
+                return x;
+            } else if (node.left != null && node.right == null) {
+                return node.left;
+            } else if(node.left == null && node.right != null ) {
+                return node.right;
+            } else {
+                return null;
+            }
+        } else if (cmp < 0) {
+            node.right = delete(node.right, key);
+        } else {
+            node.left = delete(node.left, key);
+        }
+        return node;
+    }
 
 }
 
