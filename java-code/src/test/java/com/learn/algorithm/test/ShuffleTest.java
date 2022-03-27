@@ -16,15 +16,13 @@ public class ShuffleTest {
     public void shuffle() {
 
         List<Character> characters = new ArrayList<Character>();
-//        for (char i = 'A'; i < 'A' + 10; i++) {
-//            characters.add(i);
-//        }
-//        Collections.shuffle(characters);
+        for (char i = 'A'; i < 'A' + 26; i++) {
+            characters.add(i);
+        }
+        Collections.shuffle(characters);
         BinarySearchTree<Character, Integer> tree = new BinarySearchTree<Character, Integer>();
-
-//        System.out.println(characters);
-//        tree.buildTree(characters.toArray(new Character[characters.size()]), 1);
-        tree.buildTree(new Character[]{'D', 'B', 'J', 'C', 'F', 'H', 'A', 'G', 'E', 'I'}, 1);
+        tree.buildTree(characters.toArray(new Character[characters.size()]), 1);
+        //tree.buildTree(new Character[]{'D', 'B', 'J', 'C', 'F', 'H', 'A', 'G', 'E', 'I'}, 1);
         TreePrint ptr = new TreePrint(tree);
         ptr.printTree();
         ptr.printTree1();

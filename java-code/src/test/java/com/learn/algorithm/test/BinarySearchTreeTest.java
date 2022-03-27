@@ -48,8 +48,8 @@ public class BinarySearchTreeTest {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
         String[] strs = new String[] {"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
-        Assert.assertTrue(bt.max().equals("E"));
-        Assert.assertTrue(bt.min().equals("B"));
+        Assert.assertTrue(bt.max().key.equals("E"));
+        Assert.assertTrue(bt.min().key.equals("B"));
     }
 
     @Test
@@ -134,5 +134,29 @@ public class BinarySearchTreeTest {
         ptr.printTree();
         ptr.printTree1();
         ptr.printTree3();
+    }
+
+    @Test
+    public void testDelMinMax() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
+
+        BinarySearchTree binarySearchTree = bt.buildTree(strs, 1);
+        TreePrint ptr = new TreePrint(binarySearchTree);
+        ptr.printTree3();
+        binarySearchTree.delMin();
+        ptr.printTree3();
+        binarySearchTree.delMax();
+        ptr.printTree3();
+    }
+
+    @Test
+    public void testDelete() {
+        BinarySearchTree<Character, Integer> tree = new BinarySearchTree<Character, Integer>();
+        tree.buildTree(new Character[]{'D', 'B', 'J', 'C', 'F', 'H', 'A', 'G', 'E', 'I'}, 1);
+        TreePrint print = new TreePrint(tree);
+        print.printTree3();
+        tree.delete('F');
+        print.printTree3();
     }
 }
