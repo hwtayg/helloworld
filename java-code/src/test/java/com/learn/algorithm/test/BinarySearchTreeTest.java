@@ -1,6 +1,7 @@
 package com.learn.algorithm.test;
 
 import com.learn.algorithm.binarytree.BinarySearchTree;
+import com.learn.algorithm.binarytree.TreePrint;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -100,8 +101,8 @@ public class BinarySearchTreeTest {
     public void testPrintTree() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
         String[] strs = new String[] {"E", "B", "C", "D"};
-        bt.buildTree(strs, 1);
-        bt.printTree();
+        TreePrint ptr = new TreePrint(bt.buildTree(strs, 1));
+        ptr.printTree();
     }
 
     @Test
@@ -112,35 +113,26 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(bt.hight() == 1);
     }
 
-    @Test
-    public void testRootPos() {
-        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C"};
-        bt.buildTree(strs, 1);
-        Assert.assertTrue(bt.findRootPos() == -1);
-    }
-
-    @Test
-    public void testRootPos1() {
-        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C", "B", "A"};
-        bt.buildTree(strs, 1);
-        Assert.assertTrue(bt.findRootPos() == -3);
-    }
-
-    @Test
-    public void testRootPos2() {
-        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
-        String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
-        bt.buildTree(strs, 1);
-        Assert.assertTrue(bt.findRootPos() == -2);
-    }
 
     @Test
     public void testPrint() {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
         String[] strs = new String[] {"E", "F", "C", "K","J","I", "H", "G"};
-        bt.buildTree(strs, 1);
-        bt.printTree();
+
+        TreePrint ptr = new TreePrint(bt.buildTree(strs, 1));
+        ptr.printTree();
+        ptr.printTree1();
+        ptr.printTree2();
+    }
+
+    @Test
+    public void testPrintGood() {
+        BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
+        String[] strs = new String[] {"E", "F", "C"};
+
+        TreePrint ptr = new TreePrint(bt.buildTree(strs, 1));
+        ptr.printTree();
+        ptr.printTree1();
+        ptr.printTree3();
     }
 }
