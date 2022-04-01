@@ -1,8 +1,6 @@
 package com.learn.algorithm.test;
 
-import com.learn.algorithm.binarytree.BinarySearchTree;
-import com.learn.algorithm.binarytree.PrintUtils;
-import com.learn.algorithm.binarytree.TreePrint;
+import com.learn.algorithm.binarytree.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +23,7 @@ public class BinarySearchTreeTest {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
         String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
-        Integer res = bt.get("C");
+        Integer res = bt.get("C").value;
         Assert.assertTrue(res == 1);
     }
 
@@ -34,8 +32,7 @@ public class BinarySearchTreeTest {
         BinarySearchTree<String, Integer> bt = new BinarySearchTree<String, Integer>();
         String[] strs = new String[]{"E", "B", "C", "D"};
         bt.buildTree(strs, 1);
-        Integer res = bt.get("F");
-        Assert.assertTrue(res == null);
+        Assert.assertTrue(bt.get("F") == null);
     }
 
     @Test
@@ -175,7 +172,33 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(queue1.size() == 3);
         Queue<Character> queue2 = tree.keys('C', 'K');
         Assert.assertTrue(queue2.size() == 8);
-
     }
 
+    /**
+     * Algorithm forth edition book 3.3.24
+     */
+    @Test
+    public void testRBTree1() {
+        RBTree<Character, Integer> tree = new RBTree<Character, Integer>();
+        tree.buildTree(new Character[]{'S', 'E', 'A', 'R', 'C', 'H', 'X', 'M','P','L'}, 1);
+        TreePrint print = new TreePrint(tree);
+        print.printTree3();
+        print.printTreeWithMark(true);
+        Assert.assertTrue(tree.get('H').color == Color.RED);
+        Assert.assertTrue(tree.get('A').color == Color.RED);
+    }
+
+    /**
+     * Algorithm forth edition book 3.3.24
+     */
+    @Test
+    public void testRBTree2() {
+        RBTree<Character, Integer> tree = new RBTree<Character, Integer>();
+        tree.buildTree(new Character[]{'A', 'C', 'E', 'H', 'L', 'M', 'P', 'R','S','X'}, 1);
+        TreePrint print = new TreePrint(tree);
+        print.printTree3();
+        print.printTreeWithMark(true);
+        Assert.assertTrue(tree.get('M').color == Color.RED);
+        Assert.assertTrue(tree.get('S').color == Color.RED);
+    }
 }
