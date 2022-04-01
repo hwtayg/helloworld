@@ -14,9 +14,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 
     public void put(K key, V vlaue) {
         root = put(root, key, vlaue);
+        root.color = Color.BLACK;
     }
 
-    private Node put(Node<K, V> node, K key, V value) {
+    Node put(Node<K, V> node, K key, V value) {
         if (node == null) {
             node = new Node<K, V>(key, value, 1, null, null);
             return node;
@@ -34,18 +35,18 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         return node;
     }
 
-    public V get(K key) {
+    public Node<K, V> get(K key) {
         return get(root, key);
     }
 
-    private V get(Node<K, V> node, K key) {
+    private Node<K, V> get(Node<K, V> node, K key) {
 
         if (node == null) {
             return null;
         }
         int cmp = key.compareTo(node.key);
         if (cmp == 0) {
-            return node.value;
+            return node;
         } else if (cmp < 0) {
             return get(node.left, key);
         } else {
@@ -57,7 +58,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         return size(root);
     }
 
-    private int size(Node<K, V> node) {
+    protected int size(Node<K, V> node) {
         if (node == null) {
             return 0;
         } else {

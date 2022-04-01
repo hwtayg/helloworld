@@ -252,6 +252,11 @@ public class TreePrint<K extends Comparable<K>, V> {
      * 解决重叠问题
      */
     public void printTree3() {
+        printTreeWithMark(false);
+    }
+
+    public void printTreeWithMark(boolean markRed) {
+
         if(root == null) {
             return;
         }
@@ -271,7 +276,11 @@ public class TreePrint<K extends Comparable<K>, V> {
             WrapperNode<K, V> wrapperNode = travelQ.remove();
             int rowIdx = wrapperNode.level;
             int colIdx = findIdxInQueue(wrapperNode.node, queue);
-            printArr[rowIdx][colIdx] = wrapperNode.node.key.toString();
+            if (markRed && Node.isRed(wrapperNode.node)) {
+                printArr[rowIdx][colIdx] = "*";
+            } else {
+                printArr[rowIdx][colIdx] = wrapperNode.node.key.toString();
+            }
             Node<K, V> left = wrapperNode.node.left;
             if (left != null) {
                 int leftColId = findIdxInQueue(left, queue);
@@ -299,9 +308,7 @@ public class TreePrint<K extends Comparable<K>, V> {
             }
             PrintUtils.printS(sb.toString());
         }
-
     }
-
 
     private int findIdxInQueue(Node<K, V> node, LinkedList<Node<K, V>> queue) {
 

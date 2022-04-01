@@ -1,9 +1,6 @@
 package com.learn.algorithm.test;
 
-import com.learn.algorithm.binarytree.BinarySearchTree;
-import com.learn.algorithm.binarytree.Node;
-import com.learn.algorithm.binarytree.PrintUtils;
-import com.learn.algorithm.binarytree.TreePrint;
+import com.learn.algorithm.binarytree.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -29,6 +26,22 @@ public class ShuffleTest {
         ptr.printTree2();
         ptr.printTree3();
         tree.preOrder();
+    }
+
+
+    @Test
+    public void shuffleRBTree() {
+
+        List<Character> characters = new ArrayList<Character>();
+        for (char i = 'A'; i < 'A' + 26; i++) {
+            characters.add(i);
+        }
+        Collections.shuffle(characters);
+        RBTree<Character, Integer> tree = new RBTree<Character, Integer>();
+        tree.buildTree(characters.toArray(new Character[characters.size()]), 1);
+        TreePrint ptr = new TreePrint(tree);
+        ptr.printTree3();
+        ptr.printTreeWithMark(true);
     }
 
 }
