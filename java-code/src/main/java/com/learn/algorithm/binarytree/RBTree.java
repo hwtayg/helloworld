@@ -66,4 +66,16 @@ public class RBTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
 
         return node;
     }
+
+    @Override
+    protected Node<K, V> delMin(Node<K, V> node) {
+
+        Node left = node.left;
+        if(Node.isRed(left)) {
+            delMin(left);
+        }else{
+            return null;
+        }
+        return null;
+    }
 }

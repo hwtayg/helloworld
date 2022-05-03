@@ -225,7 +225,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         root = delMin(root);
     }
 
-    private Node<K,V> delMin(Node<K, V> node) {
+    protected Node<K,V> delMin(Node<K, V> node) {
         if (node.left == null) {
             return node.right;
         } else {

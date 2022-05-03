@@ -182,7 +182,7 @@ public class TreePrint<K extends Comparable<K>, V> {
     private void fillSpace(StringBuilder sb, int insertPos, String value) {
         int length = sb.length();
         if (length > insertPos) {
-            sb.replace(insertPos,insertPos+1, value.toString());
+            sb.replace(insertPos,insertPos+1, value);
         } else if (length == insertPos){
             sb.append(value);
         } else {
