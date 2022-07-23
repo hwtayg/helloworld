@@ -4,10 +4,17 @@ import com.learn.algorithm.binarytree.MaxPQ;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class MaxPQTest {
+public  class   MaxPQTest {
 
     @Test
     public void test1() {
@@ -55,5 +62,7 @@ public class MaxPQTest {
         int[] arr = {Integer.MIN_VALUE, 3, 1, 4, -1, 5, 6, 0};
         MaxPQ.sort(arr);
         System.out.println(Arrays.toString(arr));
+        System.out.println(Integer.toBinaryString(-1));
+
     }
 }

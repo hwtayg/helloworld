@@ -13,12 +13,14 @@ public class Test {
     private static Logger LOGGER = LoggerFactory.getLogger(Test.class);
 
     public static void main(String[] args) throws FileNotFoundException{
-        LOGGER.info("test 123");
 
-        Test2  s = new Test2();
+//        LOGGER.info("test 123");
+        System.out.println("");
 
-        new BufferedInputStream(new FileInputStream("5.txt"));
-        Reader reader = new InputStreamReader(new FileInputStream("5.txt"));
+//        Test2  s = new Test2();
+//
+//        new BufferedInputStream(new FileInputStream("5.txt"));
+//        Reader reader = new InputStreamReader(new FileInputStream("5.txt"));
 
     }
 
